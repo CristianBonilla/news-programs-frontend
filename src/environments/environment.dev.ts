@@ -1,3 +1,6 @@
 export const environment = {
-  production: false
+  production: false,
+  api: {
+    serverUrl: 'https://cms.qailumno.com/servicios'
+  }
 };

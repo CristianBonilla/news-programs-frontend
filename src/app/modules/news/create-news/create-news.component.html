@@ -1,0 +1,67 @@
+<ng-template #newsTemplate let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title font-weight-bold">Crear un nuevo registro</h4>
+    <button type="button" class="close" (click)="dismiss(modal)" [disabled]="loading$ | async">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <form autocomplete="off" [formGroup]="newsForm" (ngSubmit)="createNews(modal)">
+    <div class="modal-body">
+      <div class="form-row">
+        <div class="form-group col-sm-6">
+          <input type="text" id="name" class="form-control form-control-lg" placeholder="Nombre"
+            [formControl]="name"
+            [npFormErrorHandler]="name" trim="blur">
+        </div>
+        <div class="form-group col-sm-6">
+          <input type="text" id="lastName" class="form-control form-control-lg" placeholder="Apellido"
+            [formControl]="lastName"
+            [npFormErrorHandler]="lastName" trim="blur">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-sm-6">
+          <input type="email" id="email" class="form-control" placeholder="Email"
+            [formControl]="email"
+            [npFormErrorHandler]="email" trim="blur">
+        </div>
+        <div class="form-group col-sm-6">
+          <input type="text" id="phone" class="form-control" placeholder="Teléfono"
+            [formControl]="phone"
+            [npFormErrorHandler]="phone" trim="blur">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="program" class="text-black-50">Programa</label>
+        <np-dropdown-select id="program" [multiple]="false"
+          [items]="dropdownProgramsSelect.data"
+          [options]="dropdownProgramsSelect.options"
+          [style]="dropdownProgramsSelect.style"
+          [formControl]="program"
+          [npFormErrorHandler]="program">
+        </np-dropdown-select>
+      </div>
+      <div class="form-group">
+        <label for="comment" class="text-black-50">Comentario (opcional)</label>
+        <textarea id="comment" class="form-control" placeholder="Ingrese un breve comentario..."
+          cols="1" rows="3" [ngStyle]="{
+            resize: 'vertical',
+            'max-height.px': 168,
+            'min-height.px': 48
+          }"
+          [formControl]="comment"
+          [npFormErrorHandler]="comment" trim="blur">
+        </textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" [ngClass]="[
+          'btn',
+          !newsForm.valid ? 'btn-danger' : 'btn-success'
+        ]" [disabled]="!newsForm.valid || (loading$ | async)">
+        <fa-icon [icon]="(loading$ | async) ? [ 'fas', 'spinner' ] : [ 'fas', 'user-check' ]" [spin]="!!(loading$ | async)"></fa-icon>
+        Registrar
+      </button>
+    </div>
+  </form>
+</ng-template>

@@ -1,0 +1,10 @@
+<overlay-scrollbars class="wrapper" npToggleSidebar [options]="scrollbarOptions">
+  <np-sidebar></np-sidebar>
+  <div class="main-panel">
+    <np-navbar></np-navbar>
+    <main class="content">
+      <router-outlet></router-outlet>
+    </main>
+    <np-footer></np-footer>
+  </div>
+</overlay-scrollbars>
