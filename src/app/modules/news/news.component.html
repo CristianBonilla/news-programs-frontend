@@ -1,0 +1,68 @@
+<div class="container-fluid px-0 px-sm-2 px-lg-3">
+  <div class="table-container">
+    <div class="d-sm-flex justify-content-between align-items-center bg-info px-3 py-2">
+      <h4 class="text-light my-1 my-sm-0">Noticias</h4>
+      <a type="button" class="btn btn-outline-light my-1 my-sm-0" [routerLink]="ROUTES.CREATE"
+        [ngClass]="{ disabled: (loading$ | async) || (errorType$ | async) === ErrorType.Failed }">
+        <fa-icon [icon]="[ 'fas', 'plus-circle' ]" size="lg"></fa-icon>
+        Nuevo registro
+      </a>
+    </div>
+    <overlay-scrollbars class="table-responsive-sm" [options]="scrollbarOptions">
+      <table class="table table-borderless table-striped">
+        <thead class="thead-dark">
+          <tr class="text-center">
+            <th scope="col">N°</th>
+            <th scope="col" class="miw-18">Título</th>
+            <th scope="col" class="miw-25">Descripción</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <ng-container *ngIf="(loading$ | async) === false && (news$ | async) !== null; else loadingNews">
+          <ng-container *ngIf="news$ | async as news">
+            <ng-container *ngIf="!!news.length; else noNewsFound">
+              <tbody>
+                <tr *ngFor="let newsInfo of news; let index = index; trackBy: trackByNews">
+                  <th scope="row" class="text-center">{{ index + 1 }}</th>
+                  <td class="text-center miw-18">{{ newsInfo.title }}</td>
+                  <td class="miw-25" [innerHTML]="newsInfo.body | newsBody: true"></td>
+                  <ng-container
+                    [ngTemplateOutlet]="actions"
+                    [ngTemplateOutletContext]="{ $implicit: newsInfo.id }"></ng-container>
+                </tr>
+              </tbody>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+      </table>
+    </overlay-scrollbars>
+  </div>
+  <router-outlet></router-outlet>
+</div>
+
+<ng-template #actions let-newsId>
+  <td class="table-actions">
+    <div class="table-actions__content">
+      <a role="button" class="btn text-primary" placement="top" ngbTooltip="Detalles"
+        [routerLink]="ROUTES.DETAILS + '/' + newsId">
+        <fa-icon [icon]="[ 'far', 'eye' ]" size="lg"></fa-icon>
+      </a>
+    </div>
+  </td>
+</ng-template>
+
+<ng-template #noNewsFound>
+  <tbody>
+    <tr>
+      <td colspan="4" class="text-black-50 text-center table-light">No hay noticias disponibles</td>
+    </tr>
+  </tbody>
+</ng-template>
+
+<ng-template #loadingNews>
+  <tbody>
+    <tr>
+      <th scope="row" colspan="4" class="text-black-50 text-center table-light">Cargando...</th>
+    </tr>
+  </tbody>
+</ng-template>

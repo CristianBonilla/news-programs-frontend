@@ -13,13 +13,35 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
-    "target": "ES2017",
-    "module": "ES2015",
+    "target": "ES2015",
+    "module": "ES2020",
     "lib": [
       "ES2018",
       "DOM",
       "DOM.Iterable"
-    ]
+    ],
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "paths": {
+      "@core/*": [
+        "src/app/core/*"
+      ],
+      "@directives/*": [
+        "src/app/directives/*"
+      ],
+      "@helpers/*": [
+        "src/app/helpers/*"
+      ],
+      "@modules/*": [
+        "src/app/modules/*"
+      ],
+      "@shared/*": [
+        "src/app/shared/*"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

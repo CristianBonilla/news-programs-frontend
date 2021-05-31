@@ -1,0 +1,40 @@
+<ng-template #newsTemplate let-modal>
+  <ng-container *ngIf="!!news">
+    <ng-container
+      [ngTemplateOutlet]="newsModalTemplate"
+      [ngTemplateOutletContext]="{ $implicit: modal }"></ng-container>
+  </ng-container>
+</ng-template>
+
+<ng-template #newsModalTemplate let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title font-weight-bold">Detalles de la noticia</h5>
+  </div>
+  <div class="modal-body">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-4 d-flex align-items-center py-2">
+          <h5 class="text-muted mb-0">Título</h5>
+        </div>
+        <div class="col-sm-8 d-flex align-items-center py-2">
+          <p class="font-weight-bold mb-0">{{ news.title }}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4 d-flex align-items-center py-2">
+          <h5 class="text-muted mb-0">Descripción</h5>
+        </div>
+        <div class="col-sm-8 d-flex align-items-center py-2">
+          <p class="text-black-50 mb-0" [ngStyle]="{ 'line-height': 1.2 }"
+            [innerHTML]="newsBodyText | newsBody"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary text-light" (click)="close(modal)">
+      <fa-icon [icon]="[ 'fas', 'times' ]" size="lg"></fa-icon>
+      Cerrar
+    </button>
+  </div>
+</ng-template>

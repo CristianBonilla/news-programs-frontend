@@ -1,0 +1,18 @@
+<overlay-scrollbars class="sidebar_wrapper" [options]="scrollbarOptions">
+  <div class="sidebar_user">
+    <div class="sidebar_user-photo">
+      <img src="assets/images/user-profile.png" alt="">
+    </div>
+    <div class="sidebar_user-info">
+      <p class="text-truncate">Buen día, Cristian Bonilla</p>
+    </div>
+  </div>
+  <ul class="nav">
+    <li class="nav-item" routerLinkActive="active">
+      <a class="nav-link" [routerLink]="ROUTES.NEWS">
+        <fa-icon [icon]="[ 'far', 'newspaper' ]" size="2x"></fa-icon>
+        <p>Noticias<span class="badge badge-success">¡Nuevo!</span></p>
+      </a>
+    </li>
+  </ul>
+</overlay-scrollbars>
