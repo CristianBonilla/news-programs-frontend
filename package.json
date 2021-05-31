@@ -26,6 +26,7 @@
     "coverage": "ng test --watch=false --code-coverage",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "gh-pages": "ng build --configuration pro --output-path docs --base-href /news-programs-frontend/",
     "postinstall": "ngcc"
   },
   "private": true,
