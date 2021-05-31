@@ -2,7 +2,8 @@
   <div class="table-container">
     <div class="d-sm-flex justify-content-between align-items-center bg-info px-3 py-2">
       <h4 class="text-light my-1 my-sm-0">Noticias</h4>
-      <a type="button" class="btn btn-outline-light my-1 my-sm-0" [routerLink]="ROUTES.CREATE">
+      <a type="button" class="btn btn-outline-light my-1 my-sm-0" [routerLink]="ROUTES.CREATE"
+        [ngClass]="{ disabled: (loading$ | async) || (errorType$ | async) === ErrorType.Failed }">
         <fa-icon [icon]="[ 'fas', 'plus-circle' ]" size="lg"></fa-icon>
         Nuevo registro
       </a>
@@ -17,7 +18,7 @@
             <th scope="col">Acciones</th>
           </tr>
         </thead>
-        <ng-container *ngIf="!(loading$ | async) && !!(news$ | async); else loadingNews">
+        <ng-container *ngIf="(loading$ | async) === false && (news$ | async) !== null; else loadingNews">
           <ng-container *ngIf="news$ | async as news">
             <ng-container *ngIf="!!news.length; else noNewsFound">
               <tbody>

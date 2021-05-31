@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { NewsState } from '@modules/news/store/reducers/news.reducer';
@@ -6,7 +6,7 @@ import { DEFAULT_SCROLLBAR_OPTIONS, ScrollbarOptions } from 'src/app/models/scro
 import { getAllNews } from '@modules/news/store/actions/news.actions';
 import { getError, getNews, getNewsAmount, isLoading } from '@modules/news/store/selectors/news.selectors';
 import { ErrorType, NewsResponse } from '@modules/news/models/news';
-import { distinctUntilChanged, filter, take } from 'rxjs/operators';
+import { distinctUntilChanged, filter, take, map } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { APP_ROUTES } from 'src/app/models/routes';
@@ -18,7 +18,7 @@ const { HOME: { NEWS: ROUTES } } = APP_ROUTES;
   templateUrl: './news.component.html',
   styleUrls: [ './news.component.scss' ]
 })
-export class NewsComponent implements OnInit, AfterViewInit {
+export class NewsComponent implements OnInit {
   readonly scrollbarOptions: ScrollbarOptions = {
     ...DEFAULT_SCROLLBAR_OPTIONS,
     overflowBehavior: {
@@ -26,21 +26,24 @@ export class NewsComponent implements OnInit, AfterViewInit {
     }
   };
   readonly ROUTES = ROUTES;
+  readonly ErrorType = ErrorType;
   loading$!: Observable<boolean>;
   news$!: Observable<NewsResponse[] | null>;
   failedSubscriptions: Subscription[] = [];
+  errorType$!: Observable<ErrorType>;
 
   constructor(private store: Store<NewsState>, private toastr: ToastrService) { }
 
   ngOnInit() {
     this.loading$ = this.store.select(isLoading);
     this.news$ = this.store.select(getNews);
+    this.errorType$ = this.store.select(getError).pipe(
+      filter(error => !!error),
+      map(({ errorType }) => errorType)
+    );
     this.store.dispatch(getAllNews());
     this.loadSuccess();
-  }
-
-  ngAfterViewInit() {
-    this.hasError();
+    this.onErrors();
   }
 
   trackByNews(index: number, newsResponse: NewsResponse) {
@@ -56,17 +59,17 @@ export class NewsComponent implements OnInit, AfterViewInit {
     });
   }
 
-  private hasError() {
+  private onErrors() {
     const subscriptions = this.store.select(getError).pipe(
       distinctUntilChanged(),
       filter(error => !!error)
     ).subscribe(error => {
-      this.onError(error.errorType);
+      this.onMessages(error.errorType);
     });
     this.failedSubscriptions.push(subscriptions);
   }
 
-  private async onError(errorType: ErrorType) {
+  private onMessages(errorType: ErrorType) {
     switch (errorType) {
       case ErrorType.NoNews:
         this.toastr.info('', 'No hay noticias registradas');

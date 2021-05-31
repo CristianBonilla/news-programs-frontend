@@ -59,7 +59,7 @@
           'btn',
           !newsForm.valid ? 'btn-danger' : 'btn-success'
         ]" [disabled]="!newsForm.valid || (loading$ | async)">
-        <fa-icon [icon]="(loading$ | async) ? [ 'fas', 'spinner' ] : [ 'fas', 'user-check' ]" [spin]="!!(loading$ | async)"></fa-icon>
+        <fa-icon [icon]="(loading$ | async) ? [ 'fas', 'spinner' ] : [ 'fas', 'user-check' ]" [spin]="(loading$ | async) === true"></fa-icon>
         Registrar
       </button>
     </div>

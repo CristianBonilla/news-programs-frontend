@@ -19,9 +19,10 @@ export interface ProgramResponse {
 }
 
 export enum ErrorType {
-  NoNews = 'NN',
-  NoPrograms = 'NP',
-  NoCreated = 'NC'
+  NoNews = 'NoNews',
+  NoPrograms = 'NoPrograms',
+  NoCreated = 'NoCreated',
+  Failed = 'Failed'
 }
 
 export enum NewsActions {

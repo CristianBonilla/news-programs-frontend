@@ -61,7 +61,7 @@ export class NewsEffects {
             mergeMap(_ => of(fetchAllNewsFailure({
               error: {
                 ...error,
-                errorType: null
+                errorType: ErrorType.Failed
               }
             })))
           );
@@ -106,7 +106,7 @@ export class NewsEffects {
           return of(fetchAllNewsFailure({
             error: {
               ...error,
-              errorType: null
+              errorType: ErrorType.Failed
             }
           }));
         })
