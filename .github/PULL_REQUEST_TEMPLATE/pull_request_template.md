@@ -4,10 +4,10 @@
 
 Please check if your PR fulfills the following requirements:
 
-- [x] Tests for the changes have been added (for bug fixes / features)
-- [x] Docs have been reviewed and added / updated if needed (for bug fixes / features)
-- [x] Build was run locally and any changes were pushed
-- [x] Lint has passed locally and any fixes were made for failures
+- [ ] Tests for the changes have been added (for bug fixes / features)
+- [ ] Docs have been reviewed and added / updated if needed (for bug fixes / features)
+- [ ] Build was run locally and any changes were pushed
+- [ ] Lint has passed locally and any fixes were made for failures
 
 ## Pull request type
 
@@ -18,16 +18,18 @@ Please check if your PR fulfills the following requirements:
 Please check the type of change your PR introduces:
 
 - [ ] :bug: Bugfix
-- [x] :sparkles: Feature
-- [x] :lipstick: :art: Code style update (formatting, renaming)
-- [x] :recycle: Refactoring (no functional changes, no api changes)
-- [x] :zap: Performance
+- [ ] :sparkles: Feature
+- [ ] :lipstick: :art: Code style update (formatting, renaming)
+- [ ] :recycle: Refactoring (no functional changes, no api changes)
+- [ ] :zap: Performance
 - [ ] :pencil: Documentation content changes
 - [ ] :wrench: Other (please describe):
 
 ## What is the current behavior?
 
 <!-- Please describe the current behavior that you are modifying, or link to a relevant issue. -->
+
+Jira Number: (company name)-
 
 ## What is the new behavior?
 
@@ -37,7 +39,7 @@ Please check the type of change your PR introduces:
 
 ## Does this introduce a breaking change?
 
-- [x] Yes
+- [ ] Yes
 - [ ] No
 
 <!-- If this introduces a breaking change, please describe the impact and migration path for existing applications below. -->
