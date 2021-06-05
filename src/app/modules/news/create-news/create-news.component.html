@@ -9,19 +9,19 @@
     <div class="modal-body">
       <div class="form-row">
         <div class="form-group col-sm-6">
-          <input type="text" id="name" class="form-control form-control-lg" placeholder="Nombre"
+          <input type="text" id="name" class="form-control form-control-lg" placeholder="Nombre*"
             [formControl]="name"
             [npFormErrorHandler]="name" trim="blur">
         </div>
         <div class="form-group col-sm-6">
-          <input type="text" id="lastName" class="form-control form-control-lg" placeholder="Apellido"
+          <input type="text" id="lastName" class="form-control form-control-lg" placeholder="Apellido*"
             [formControl]="lastName"
             [npFormErrorHandler]="lastName" trim="blur">
         </div>
       </div>
       <div class="form-row">
         <div class="form-group col-sm-6">
-          <input type="email" id="email" class="form-control" placeholder="Email"
+          <input type="email" id="email" class="form-control" placeholder="Email*"
             [formControl]="email"
             [npFormErrorHandler]="email" trim="blur">
         </div>
@@ -42,7 +42,7 @@
         </np-dropdown-select>
       </div>
       <div class="form-group">
-        <label for="comment" class="text-black-50">Comentario (opcional)</label>
+        <label for="comment" class="text-black-50">Comentario</label>
         <textarea id="comment" class="form-control" placeholder="Ingrese un breve comentario..."
           cols="1" rows="3" [ngStyle]="{
             resize: 'vertical',
