@@ -36,7 +36,7 @@ export class ToggleSidebarDirective implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.router.events.pipe(
-      filter(event => routeFromSidebar(event) && this.buttonIsVisible)
+      filter(event => routeFromSidebar(event) && !!this.buttonIsVisible && !!this.visibleSidebar)
     ).subscribe(_ => this.hideSidebar());
   }
 

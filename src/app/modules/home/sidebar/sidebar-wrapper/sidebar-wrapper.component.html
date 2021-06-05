@@ -8,7 +8,7 @@
     </div>
   </div>
   <ul class="nav">
-    <li class="nav-item" routerLinkActive="active">
+    <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
       <a class="nav-link" [routerLink]="ROUTES.NEWS">
         <fa-icon [icon]="[ 'far', 'newspaper' ]" size="2x"></fa-icon>
         <p>Noticias<span class="badge badge-success">¡Nuevo!</span></p>

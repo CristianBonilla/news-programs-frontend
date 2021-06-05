@@ -1,9 +1,7 @@
 <ng-template #newsTemplate let-modal>
-  <ng-container *ngIf="!!news">
-    <ng-container
-      [ngTemplateOutlet]="newsModalTemplate"
-      [ngTemplateOutletContext]="{ $implicit: modal }"></ng-container>
-  </ng-container>
+  <ng-container *ngIf="!!news"
+    [ngTemplateOutlet]="newsModalTemplate"
+    [ngTemplateOutletContext]="{ $implicit: modal }"></ng-container>
 </ng-template>
 
 <ng-template #newsModalTemplate let-modal>
